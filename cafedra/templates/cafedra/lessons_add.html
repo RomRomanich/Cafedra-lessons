@@ -1,0 +1,66 @@
+{% extends 'cafedra/base.html' %}
+
+{% block content %}
+
+ 	<section class="section1" >
+         <div class="container1">
+              <div class="wrapper" data-aos="fade-down" data-aos-duration="2000" >
+                  <h1 >Lessons</h1>
+              </div>
+		 </div>
+    </section>
+<!-- 2 section ===================================== -->
+
+<div class="container0" style="background-color: rgba(27, 27, 27, 0.808);">
+
+     {% if messages %}
+                {% for message in messages %}
+                   <ul class="messagelist">
+                         <li class="alert-success">
+                       <div class="alert alert-{{message.tags}} m-2" id="msg" role="alert" style="font-size: 20px">
+                        {{ message|safe }}
+                    </div>
+
+                       </li>
+                   </ul>
+                {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'lessons_add' %}" method="post" enctype="multipart/form-data" style="font-weight: 500; color:white; ">
+        {% csrf_token %}
+
+        <div>
+            <label class="required" for="id_name" style="width: 115px; font-size: 30px;"><b>Name:</b> </label>
+            <input type="text" name="name" class="vTextField" maxlength="512" required="" id="id_name">
+        </div>
+
+        <div class="form-row field-text">
+            <div>
+                <label for="id_text" style="width: 120px; font-size: 25px;">Text:</label>
+                <textarea name="text" cols="150" rows="10" class="vLargeTextField" id="id_text"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row field-datetime">
+            <label class="required" for="localdate" style="width: 125px; font-size: 30px;">Date:</label>
+
+                <input type="datetime-local" id="{{datetime}}" name="datetime"/>{{datetime}}
+        </div>
+
+
+        <div class="form-row field-tezkorlik">
+            <label class="required" for="id_tezkorlik" style="width: 125px; font-size: 25px;">Types:</label>
+            <div class="related-widget-wrapper">
+                <select name="types" required="" id="id_types">
+                <option value="" selected="">---------</option>
+                </select>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+</div>
+
+{% endblock %}

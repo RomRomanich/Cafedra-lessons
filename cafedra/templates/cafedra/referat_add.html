@@ -1,0 +1,61 @@
+{% extends 'cafedra/base.html' %}
+
+{% block content %}
+
+ 	<section class="section1" >
+         <div class="container1">
+              <div class="wrapper" data-aos="fade-down" data-aos-duration="2000" >
+                  <h1 >Referat add </h1>
+              </div>
+		 </div>
+    </section>
+<!-- 2 section ===================================== -->
+
+<div class="container0">
+
+
+    {% if messages %}
+                {% for message in messages %}
+                   <ul class="messagelist">
+                         <li class="alert-success">
+                       <div class="alert alert-{{message.tags}} m-2" id="msg" role="alert" style="font-size: 20px">
+                        {{ message|safe }}
+                    </div>
+
+                       </li>
+                   </ul>
+                {% endfor %}
+    {% endif %}
+
+<form action="{% url 'referat_add' %}" method="post" enctype="multipart/form-data" style="font-weight: 500; color:black; ">
+        {% csrf_token %}
+
+    <div>
+        <label class="required" for="id_title" style="width: 115px; font-size: 25px;">Name: </label>
+        <input type="text" name="title" class="vTextField" maxlength="512" required="" id="id_title">
+    </div>
+
+    <div class="form-row field-author">
+       <div>
+        <label class="required" for="id_author" style="width: 120px; font-size: 25px;">Author:</label>
+        <input type="text" name="author" class="vTextField" maxlength="512" required="" id="id_author">
+       </div>
+    </div>
+
+         <div class="form-row field-text">
+            <div>
+                <label for="id_text" style="width: 120px; font-size: 25px;">Text:</label>
+                <textarea name="text" cols="150" rows="10" class="vLargeTextField" id="id_text"></textarea>
+            </div>
+        </div>
+
+   <div class="form-row field-datetime">
+            <label class="required" for="localdate" style="width: 125px; font-size: 25px;">Date:</label>
+
+                <input type="datetime-local" id="{{datetime}}" name="datetime"/>{{datetime}}
+        </div>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+</div>
+
+{% endblock %}

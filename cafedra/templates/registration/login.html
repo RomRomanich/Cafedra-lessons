@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Admin </title>
+    <link rel="stylesheet" href="{% static 'cafedra/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'cafedra/css/sb-admin-2.min.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+
+  <!-- bg_video ========================= -->
+ <div class="backgroud" style="z-index: -1; position: fixed; top: 0; left: 0; min-width: 100vw; height: 100vh; ">
+  <video preload="none" autoplay="true" loop="true" muted="muted" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+    <source src="{% static 'cafedra/images/global network background animation.webm' %}" type="video/webm">
+  </video>
+</div>
+
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+
+  <body>
+<section class="hero is-success is-fullheight">
+  <div class="hero-body">
+    <div class="container" style="    position: absolute;
+    top: -266px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 260px;
+    height: 355px;
+    border-radius: 5px;
+    background: rgba(3,3,3,0.5);
+    box-shadow: 1px 1px 50px #000;">
+
+
+      <div class="columns">
+        <div class="column is-offset-2 is-8">
+         <div data-aos="zoom-in" data-aos-duration="1500" style="display:flex;justify-content:center;">
+          <img style="width:140px; height:140px;" src="{% static 'cafedra/images/523.png' %}">
+         </div>
+            {% if form.errors %}
+                <p style="font-size:15px; color:white;">!! Login or password is wrong !!</p>
+            {% endif %}
+          <form action="{% url 'login' %}" method="POST" >
+            {% csrf_token %}
+
+            <div class="field" >
+              <label style="font-size:20px; color:white;" for="{{ form.username.id_for_label }}" class="label">
+                Username
+              </label>
+              <div class="control" style="">
+                {{ form.username }}
+              </div>
+              <p class="help is-danger">{{ form.username.errors }}</p>
+            </div>
+
+            <div class="field">
+              <label style="font-size:20px; color:white"  for="{{ form.password.id_for_label }}" class="label">
+                Parol
+              </label>
+              <div class="control" >
+                {{ form.password }}
+              </div>
+              <p class="help is-danger">{{ form.password.errors }}</p>
+            </div>
+
+            <div class="field">
+              <div class="control" style=" font-family: 'Open Sans Condensed', sans-serif; text-align: center; padding: 4px 8px;">
+                <button style="font-family: 'Open Sans Condensed', sans-serif; text-align: center; padding: 3px 57px; color:white; border:none; background: rgba(107,255,3,0.3);" class="button is-link" sty>Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</body>
+
+
+<!-- Script +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+
+  var vid = document.getElementById("vid");
+
+function playVid() {
+    vid.play();
+}
+
+ </script>
+<script src="{% static 'cafedra/js/TweenMax.min.js' %}"></script>
+<script src="{% static 'cafedra/js/jquery.min.js' %}"></script>
+<script src="{% static 'cafedra/js/index.js' %}"></script>
+<script src="{% static 'cafedra/js/aos.js' %}"></script>
+<script src="{% static 'cafedra/js/index.js' %}"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>

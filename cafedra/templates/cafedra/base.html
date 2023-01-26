@@ -1,0 +1,179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>  </title>
+
+
+     <!-- Bootstrap 4 -->
+     <script src="{% static 'cafedra/js/jquery-3.3.1.slim.min.js' %}" ></script>
+      <link rel="stylesheet" href="{% static 'cafedra/css/bootstrap.min.css' %}" >
+
+    <!-- Font Awesome -->
+    <link href="{% static 'cafedra/css/font-awesome.min.css' %}" rel="stylesheet" >
+
+    <!-- Moment.js -->
+    <script src="{% static 'cafedra/js/moment.min.js' %}" ></script>
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'cafedra/css/tempusdominus-bootstrap-4.min.css' %}" />
+    <script src="{% static 'cafedra/js/tempusdominus-bootstrap-4.min.js' %}" ></script>
+
+ <!-- Svoi -->
+    <link rel="stylesheet" href="{% static 'cafedra/css/asosiy.css' %}">
+    <link rel="stylesheet" href="{% static 'cafedra/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'cafedra/css/sb-admin-2.min.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+   </head>
+
+
+   <!-- Header ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- bg img ======================================= -->
+
+       <div class="backgroud" style="z-index: -1; position: fixed; top: 0; left: 0; min-width: 100vw; height: 100vh; ">
+        <video preload="none" poster="{% static '' %}" autoplay="true" loop="true" muted="muted" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+        </video>
+       </div>
+
+   <header>
+
+    <body class="bg_map">
+      <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+
+        <div class="bg_admin">
+          <a href="{% url 'central' %}">
+            <img src="{% static '' %}" style="height: 50px; width: 50px;" alt="">
+          </a>
+
+        </div>
+
+        <ul class="nav pull-left top-menu">
+              <li><a class="bosh" href="{% url 'central' %}" >Central</a></li>
+        </ul>
+
+
+        <!-- Topbar Navbar ========================== -->
+        <ul class="navbar-nav ml-auto" >
+
+            <div class="topbar-divider d-none d-sm-block">
+            </div>
+
+            <!-- Nav Item - Out =============================-->
+            <ul class="nav pull-right top-menu">
+              <li><a class="logout" href="{% url 'logout' %}">Back</a></li>
+            </ul>
+
+        </ul>
+
+      </nav>
+    </body>
+    </header>
+<!-- Main ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+   <main>
+
+  <!-- 1 section ==================================== -->
+
+
+  <section>
+       <div class="sidebar">
+    <ul class="nav-links">
+      <br>
+      <li  data-aos="fade-left" data-aos-duration="2000">
+        <a src=" " href=" {% url 'central' %} " src="" class="active glassIco">
+          <i class="bx bx-grid-alt " src=" "></i>
+          <span style="margin-left: 10px;" class="links_name">Central</span>
+        </a>
+      </li>
+      <li data-aos="fade-left" data-aos-duration="2100">
+       <a src=" " href="{% url 'cafedra_order' %}" class="active glassIco">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Order's</span>
+        </a>
+      </li>
+
+        <li data-aos="fade-left" data-aos-duration="2200">
+        <a href="{% url 'lessonslist' %}" class="active glassIco">
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Lessons</span>
+        </a>
+      </li>
+      <li data-aos="fade-left" data-aos-duration="2300">
+        <a href="{% url 'referatlist' %}" class="active glassIco">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">Referat's</span>
+        </a>
+      </li>
+        <li data-aos="fade-left" data-aos-duration="2400">
+        <a href="{% url 'central' %}" class="active glassIco">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name"><img class="icon" style="margin-right: 10px;"  ></img>Back</span>
+         </a>
+       </li>
+     </ul>
+    </div>
+  </section>
+
+
+
+{% block content %}
+{% endblock %}
+
+</main>
+  <!-- Footer +++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+                        <span>Copyright © by <span style="color: rgb(165, 164, 162);"></span>
+
+        </div>
+    </div>
+</footer>
+
+<!-- Script +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+
+  var vid = document.getElementById("vid");
+
+function playVid() {
+    vid.play();
+}
+
+ </script>
+  <script>
+    $(document).ready(function() {
+  $(".show-hide-btn").click(function() {
+    var id = $(this).data("id");
+    $("#half-" + id).toggle();//hide/show..
+    $("#full-" + id).toggle();
+  })
+})
+</script>
+
+<script src="{% static 'cafedra/js/jquery.min.js' %}"></script>
+<script src="{% static 'cafedra/js/aos.js' %}"></script>
+<script src="{% static 'cafedra/js/popper.min.js' %}" ></script>
+<script src="{% static 'cafedra/js/bootstrap.min.js' %}" ></script>
+<script src="{% static 'cafedra/js/index.js' %}"></script>
+
+<script src="{% static 'cafedra/js/TweenMax.min.js' %}"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>

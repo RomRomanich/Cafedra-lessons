@@ -1,0 +1,66 @@
+{% extends 'cafedra/base.html' %}
+
+{% block content %}
+
+ 	<section class="section1" >
+         <div class="container1">
+              <div class="wrapper" data-aos="fade-down" data-aos-duration="2000" >
+                  <h1 >Lessons search</h1>
+              </div>
+		 </div>
+    </section>
+
+<!--  section ===================================== -->
+
+<div class="container0">
+    {% for p in object_list %}
+        <ul class="list-articles" >
+	        <li>
+			    <div class="article-panel" >
+    				<div class="abzor" data-aos="zoom-in" data-aos-duration="2000">
+						{{p.name}}    {{p.datetime|date:"d-m-Y H:i:s"}} Types: {{p.types}}
+	    			</div>
+
+                    <p class="half-content" id="half-{{ p.pk }}" style="margin:20px; color:black; font-size:25px; text-align:justify; text-indent:40px; font-family: 'Poppins';">
+                    {{p.text|truncatewords:10}}
+                    <a data-id="{{ p.pk }}" href="javascript:void();" class="show-hide-btn" style="margin:15px; color:blue; font-size:20px; text-align:justify">
+                        <br>Text open</a></p>
+
+                            <p class="full-content" id="full-{{p.pk }}" style="display: none; margin:20px; color:black; font-size:25px; text-align:justify; text-indent:40px; font-family: 'Poppins';">
+                    {{ p.text }}
+                    <a data-id="{{ p.pk}}" href="javascript:void();" class="show-hide-btn" style="margin:15px; color:blue; font-size:20px; text-align:justify">
+                        Text close </a></p>
+			    </div>
+        	</li>
+        </ul>
+    {% endfor %}
+
+    <!-- Paginator -->
+    {% if page_obj.has_other_pages %}
+        <nav class="list-pages">
+        <ul>
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"><li class="page-num">
+            </li></a>
+            {% endif %}
+                {% for p in paginator.page_range %}
+                    {% if page_obj.number == p %}
+                        <li class="page-num page-num-selected"> {{ p }}</li>
+                    {% elif p >= page_obj.number|add:-1 and p <= page_obj.number|add:1 %}
+                        <a href="?page={{p}}"><li class="page-num">
+                           {{p}}
+                       </li></a>
+                    {% endif %}
+                {% endfor %}
+
+            {% if page_obj.has_next %}
+             <a href="?page={{page_obj.next_page_number}}"><li class="page-num">
+               &gt;
+            </li></a>
+            {% endif %}
+        </ul>
+        </nav>
+   {% endif %}
+</div>
+
+{% endblock %}
